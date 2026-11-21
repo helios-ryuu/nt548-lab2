@@ -1,0 +1,110 @@
+# ==============================================================================
+# NT548 - Lab 02 (.gitignore)
+# Terraform, CloudFormation, Checkov, Taskcat, Trivy, SonarQube,
+# Podman/Jenkins/Kind (Kubeconfig Isolation), Python/Node.js & Report Temp
+# ==============================================================================
+
+# --- Terraform (Câu 1) ---
+**/.terraform/
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfplan.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+!*.tfvars.json.example
+
+# --- CloudFormation & Taskcat (Câu 2) ---
+packaged-*.yaml
+packaged-*.yml
+**/packaged-*.yaml
+**/packaged-*.yml
+taskcat_outputs/
+**/taskcat_outputs/
+.aws-sam/
+
+# --- Security & Code Quality Scan Artifacts ---
+.scannerwork/
+**/.scannerwork/
+checkov-report.*
+trivy-report.*
+sarif-*.json
+results_json.json
+*.sarif
+
+# --- Local CI/CD Stack: Podman Compose, Jenkins, SonarQube & Kind (Câu 3) ---
+jenkins_home/
+**/jenkins_home/
+sonarqube_data/
+sonarqube_logs/
+sonarqube_extensions/
+postgres_data/
+**/volumes/
+# Chặn tuyệt đối mọi kubeconfig (đặc biệt ~/.kube/lab02-config nếu vô tình copy vào repo)
+*kubeconfig*
+*lab02-config*
+*.kubeconfig
+
+# --- AWS Credentials, SSH Keys, Tokens & Secrets ---
+*.pem
+*.ppk
+*.key
+*.pub
+id_rsa
+id_ed25519
+.env
+.env.*
+!.env.example
+credentials
+aws-credentials*
+.aws/
+*.secret
+*.secrets
+secrets.json
+secrets.yaml
+secrets.yml
+!*.example.*
+!*.example
+
+# --- Microservices Build Artifacts (Python & Node.js) ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+node_modules/
+dist/
+build/
+coverage/
+.npm/
+npm-debug.log*
+
+# --- Word / Office Temp Files (Báo cáo) ---
+~$*.docx
+~$*.doc
+~$*.xlsx
+~$*.pptx
+*.tmp
+
+# --- OS & IDE ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
